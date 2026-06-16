@@ -1,603 +1,388 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>De Minimis — Industrial & Robotics Component Sourcing</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>De Minimis — Industrial Equipment Importing for North America</title>
+<meta name="description" content="De Minimis imports industrial and processing equipment into North America, with a focus on the critical mineral and rare earth supply chain." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0E1420;
+    --bg-raised: #141B29;
+    --bg-card: #18202F;
+    --ink: #ECEEF2;
+    --ink-soft: #A9B0BC;
+    --ink-faint: #5E6776;
+    --line: #232C3D;
+    --line-bright: #344057;
+    --gold: #7E97B8;
+    --gold-deep: #5A6F8C;
+    --gold-tint: rgba(126, 151, 184, 0.10);
+    --serif: "Source Serif 4", "Times New Roman", Georgia, serif;
+    --sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    --mono: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  }
 
-    :root {
-      --bg:          #f2f3f4;
-      --surface:     #ffffff;
-      --navy:        #1a2c3d;
-      --navy-mid:    #2e4459;
-      --steel:       #2d5472;
-      --steel-mid:   #5a7d96;
-      --steel-light: #c0d4e0;
-      --border:      #d4dce4;
-      --border-em:   #b0bec8;
-      --text:        #1a2c3d;
-      --text-mid:    #4a6070;
-      --text-muted:  #7a909e;
-      --dark-bg:     #111e2a;
-      --dark-surface:#172332;
-      --dark-border: #243444;
-      --red:         #c0392b;
-      --ff-head:     'Barlow', sans-serif;
-      --ff-body:     'IBM Plex Sans', sans-serif;
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: inherit; text-decoration: none; }
+
+  .wrap { max-width: 1220px; margin: 0 auto; padding: 0 40px; }
+  @media (max-width: 640px) { .wrap { padding: 0 22px; } }
+
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.001ms !important;
+      transition-duration: 0.001ms !important;
+      scroll-behavior: auto !important;
     }
+  }
 
-    html { scroll-behavior: smooth; }
-    body { background: var(--bg); color: var(--text); font-family: var(--ff-body); font-weight: 400; line-height: 1.65; font-size: 15px; -webkit-font-smoothing: antialiased; }
+  /* ---------- Texture panel: replaces photography ---------- */
+  .texture {
+    position: relative;
+    background:
+      radial-gradient(ellipse 900px 500px at 20% 0%, rgba(201,161,86,0.10), transparent 60%),
+      radial-gradient(ellipse 700px 500px at 100% 100%, rgba(201,161,86,0.06), transparent 55%),
+      repeating-linear-gradient(115deg, rgba(244,241,232,0.02) 0px, rgba(244,241,232,0.02) 1px, transparent 1px, transparent 64px),
+      var(--bg);
+  }
 
-    /* ── TYPOGRAPHY ── */
-    h1,h2,h3,h4,h5 { font-family: var(--ff-head); font-weight: 600; line-height: 1.12; letter-spacing: -0.01em; color: var(--navy); }
-    h1 { font-size: clamp(2.4rem, 4vw, 3.4rem); font-weight: 700; }
-    h2 { font-size: clamp(1.75rem, 3vw, 2.4rem); }
-    h3 { font-size: 1.2rem; font-weight: 600; }
-    p { color: var(--text-mid); }
+  .texture-card {
+    position: relative;
+    background:
+      linear-gradient(160deg, rgba(201,161,86,0.07), rgba(244,241,232,0.015)),
+      var(--bg-card);
+    border: 1px solid var(--line);
+  }
 
-    /* ── UTILITIES ── */
-    .container { max-width: 1160px; margin: 0 auto; padding: 0 2.5rem; }
-    .label { font-family: var(--ff-head); font-size: 0.68rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--steel); margin-bottom: 0.75rem; display: block; }
-    .divider { width: 2.5rem; height: 2px; background: var(--steel); margin-bottom: 1.5rem; }
-    section { padding: 5.5rem 0; }
+  /* ---------- Header ---------- */
+  header {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(11, 13, 12, 0.88);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+  .header-inner { display: flex; align-items: center; justify-content: space-between; height: 80px; }
+  .logo { font-family: var(--serif); font-size: 19px; font-weight: 600; letter-spacing: 0.02em; color: var(--ink); }
 
-    /* ── BUTTONS ── */
-    .btn { display: inline-block; font-family: var(--ff-head); font-size: 0.82rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; padding: 0.75rem 1.75rem; transition: all 0.18s; cursor: pointer; border: none; }
-    .btn-primary { background: var(--navy); color: #fff; }
-    .btn-primary:hover { background: var(--steel); }
-    .btn-outline { background: transparent; color: var(--navy); border: 1.5px solid var(--navy); }
-    .btn-outline:hover { background: var(--navy); color: #fff; }
-    .btn-steel { background: var(--steel); color: #fff; }
-    .btn-steel:hover { background: var(--navy); }
-    .btn-ghost-light { background: transparent; color: #fff; border: 1.5px solid rgba(255,255,255,0.4); }
-    .btn-ghost-light:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.7); }
-    .btn-sm { padding: 0.55rem 1.25rem; font-size: 0.74rem; }
+  nav { display: flex; gap: 38px; }
+  nav a { font-size: 13px; letter-spacing: 0.02em; color: var(--ink-soft); transition: color 0.15s ease; }
+  nav a:hover { color: var(--gold); }
+  @media (max-width: 800px) { nav { display: none; } }
 
-    /* ── NAV ── */
-    nav {
-      position: sticky; top: 0; z-index: 100;
-      background: var(--surface); border-bottom: 1px solid var(--border);
-      height: 60px; display: flex; align-items: center;
-    }
-    .nav-inner { display: flex; align-items: center; justify-content: space-between; width: 100%; }
-    .nav-left { display: flex; align-items: center; gap: 2.75rem; }
-    .nav-logo { font-family: var(--ff-head); font-weight: 700; font-size: 1.05rem; letter-spacing: 0.04em; color: var(--navy); text-decoration: none; display: flex; align-items: center; gap: 0.6rem; }
-    .nav-mark { width: 18px; height: 18px; background: var(--steel); clip-path: polygon(0 0, 100% 0, 100% 70%, 70% 100%, 0 100%); flex-shrink: 0; }
-    .nav-links { display: flex; gap: 2rem; list-style: none; }
-    .nav-links a { font-family: var(--ff-head); font-size: 0.8rem; font-weight: 500; letter-spacing: 0.04em; color: var(--text-mid); text-decoration: none; transition: color 0.15s; }
-    .nav-links a:hover { color: var(--navy); }
-    .nav-cta { display: flex; align-items: center; gap: 0.75rem; }
-    .nav-divider { height: 1.5rem; width: 1px; background: var(--border); }
+  .btn {
+    font-family: var(--sans); font-size: 13px; font-weight: 500;
+    padding: 12px 24px; border-radius: 1px; border: 1px solid var(--line-bright); color: var(--ink);
+    transition: border-color 0.15s ease, background 0.15s ease; display: inline-block; white-space: nowrap;
+  }
+  .btn:hover { border-color: var(--gold); background: var(--gold-tint); }
+  .btn-solid { background: var(--gold); border-color: var(--gold); color: #14130E; font-weight: 600; }
+  .btn-solid:hover { background: #D9B36C; border-color: #D9B36C; }
 
-    /* ── HERO ── */
-    .hero { padding: 5.5rem 0 5rem; background: var(--surface); border-bottom: 1px solid var(--border); position: relative; overflow: hidden; }
-    .hero-grid-bg { position: absolute; inset: 0; background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px); background-size: 48px 48px; opacity: 0.5; pointer-events: none; }
-    .hero-inner { display: grid; grid-template-columns: 1fr 380px; gap: 5rem; align-items: center; position: relative; }
-    .hero-eyebrow { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.75rem; }
-    .hero-tag { font-family: var(--ff-head); font-size: 0.68rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--steel); background: var(--bg); border: 1px solid var(--steel-light); padding: 0.28rem 0.75rem; }
-    h1 .accent { color: var(--steel); }
-    .hero-body { font-size: 1.05rem; color: var(--text-mid); max-width: 52ch; line-height: 1.75; margin: 1.5rem 0 2.5rem; font-weight: 300; }
-    .hero-actions { display: flex; gap: 0.85rem; flex-wrap: wrap; }
-    .hero-panel { background: var(--bg); border: 1px solid var(--border); padding: 2rem; }
-    .panel-head { font-family: var(--ff-head); font-size: 0.65rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-muted); padding-bottom: 1rem; border-bottom: 1px solid var(--border); margin-bottom: 1.25rem; }
-    .panel-spec { display: flex; flex-direction: column; gap: 0.85rem; }
-    .spec-row { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; }
-    .spec-label { font-size: 0.78rem; color: var(--text-muted); font-family: var(--ff-body); }
-    .spec-val { font-family: var(--ff-head); font-size: 0.82rem; font-weight: 600; color: var(--navy); text-align: right; }
-    .spec-divider { height: 1px; background: var(--border); }
-    .panel-rfq { margin-top: 1.5rem; padding-top: 1.25rem; border-top: 1px solid var(--border); }
-    .rfq-label { font-size: 0.72rem; color: var(--text-muted); margin-bottom: 0.6rem; display: block; }
-    .rfq-input { display: flex; }
-    .rfq-in { flex: 1; border: 1px solid var(--border); border-right: none; background: var(--surface); padding: 0.6rem 0.85rem; font-family: var(--ff-body); font-size: 0.82rem; color: var(--navy); outline: none; }
-    .rfq-in:focus { border-color: var(--steel); }
-    .rfq-in::placeholder { color: var(--text-muted); }
-    .rfq-btn { background: var(--steel); color: #fff; border: none; padding: 0.6rem 1rem; font-family: var(--ff-head); font-size: 0.72rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; transition: background 0.15s; white-space: nowrap; }
-    .rfq-btn:hover { background: var(--navy); }
+  .arrow-link { display: inline-flex; align-items: center; gap: 10px; color: var(--gold); font-size: 13.5px; font-weight: 500; }
+  .arrow-link::after { content: "→"; transition: transform 0.15s ease; }
+  .arrow-link:hover::after { transform: translateX(3px); }
 
-    /* ── TRUST BAR ── */
-    .trust-bar { padding: 0; background: var(--navy); border-bottom: none; }
-    .trust-inner { display: flex; border-left: 1px solid var(--dark-border); }
-    .trust-item { flex: 1; display: flex; align-items: flex-start; gap: 1rem; padding: 1.5rem 2rem; border-right: 1px solid var(--dark-border); }
-    .trust-dot { width: 6px; height: 6px; background: var(--steel-light); border-radius: 50%; margin-top: 0.35rem; flex-shrink: 0; }
-    .trust-text strong { font-family: var(--ff-head); font-size: 0.82rem; font-weight: 600; color: #fff; display: block; margin-bottom: 0.18rem; letter-spacing: 0.01em; }
-    .trust-text span { font-size: 0.74rem; color: rgba(255,255,255,0.45); }
+  .eyebrow {
+    font-family: var(--sans); font-weight: 600; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--gold); display: flex; align-items: center; gap: 12px;
+  }
+  .eyebrow .rule { width: 36px; height: 1px; background: var(--gold-deep); }
 
-    /* ── SECTION HEADER ── */
-    .sec-head { margin-bottom: 3.5rem; }
-    .sec-head.narrow { max-width: 58ch; }
+  /* ---------- Hero ---------- */
+  .hero { position: relative; min-height: 78vh; display: flex; align-items: center; }
+  .hero-content { position: relative; z-index: 3; padding: 100px 0 80px; }
 
-    /* ── CAPABILITIES ── */
-    .caps { background: var(--bg); }
-    .caps-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--border); }
-    .cap-card { background: var(--surface); padding: 2.25rem 2rem; border-top: 3px solid transparent; transition: border-color 0.2s; }
-    .cap-card:hover { border-top-color: var(--steel); }
-    .cap-num { font-family: var(--ff-head); font-size: 0.65rem; font-weight: 700; letter-spacing: 0.22em; color: var(--text-muted); margin-bottom: 1.5rem; }
-    .cap-title { font-size: 1.05rem; margin-bottom: 0.85rem; }
-    .cap-body { font-size: 0.84rem; color: var(--text-mid); line-height: 1.7; }
+  .hero-kicker { font-family: var(--serif); font-size: 16px; color: var(--gold); margin-bottom: 18px; letter-spacing: 0.01em; }
+  .hero h1 {
+    font-family: var(--serif); font-size: clamp(42px, 6vw, 76px); font-weight: 600;
+    line-height: 1.04; letter-spacing: -0.015em; max-width: 880px; margin-bottom: 30px;
+  }
+  .hero h1 em { font-style: normal; color: var(--gold); }
 
-    /* ── CATEGORIES ── */
-    .cats { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-    .cats-layout { display: grid; grid-template-columns: 280px 1fr; gap: 5rem; align-items: start; }
-    .cats-left { position: sticky; top: 5rem; }
-    .cats-left p { font-size: 0.9rem; color: var(--text-mid); line-height: 1.75; margin-top: 0.75rem; }
-    .cats-left .btn { margin-top: 2rem; }
-    .cats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border); }
-    .cat-cell { background: var(--surface); padding: 1.75rem 1.5rem; transition: background 0.15s; cursor: default; }
-    .cat-cell:hover { background: #f8f9fa; }
-    .cat-name { font-family: var(--ff-head); font-size: 0.95rem; font-weight: 600; color: var(--navy); margin-bottom: 0.5rem; }
-    .cat-desc { font-size: 0.78rem; color: var(--text-muted); line-height: 1.6; }
-    .cat-examples { margin-top: 0.75rem; display: flex; flex-wrap: wrap; gap: 0.3rem; }
-    .cat-tag { font-size: 0.68rem; font-family: var(--ff-head); font-weight: 500; letter-spacing: 0.06em; color: var(--steel); background: var(--bg); border: 1px solid var(--steel-light); padding: 0.15rem 0.5rem; }
+  .hero p.lede { font-family: var(--serif); font-size: clamp(18px, 1.8vw, 22px); font-weight: 400; color: var(--ink-soft); max-width: 640px; line-height: 1.45; margin-bottom: 40px; }
 
-    /* ── WHO WE SERVE ── */
-    .serve { background: var(--bg); }
-    .serve-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1px; background: var(--border); margin-top: 3.5rem; }
-    .serve-cell { background: var(--surface); padding: 1.75rem 1.5rem; }
-    .serve-cell h4 { font-size: 0.92rem; margin-bottom: 0.5rem; }
-    .serve-cell p { font-size: 0.78rem; color: var(--text-muted); line-height: 1.6; }
-    .serve-row { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; align-items: start; margin-bottom: 3rem; }
-    .serve-row h2 { margin-bottom: 1rem; }
-    .serve-row p { font-size: 0.9rem; line-height: 1.75; }
+  .hero-ctas { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 56px; }
 
-    /* ── HOW IT WORKS ── */
-    .how { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-    .steps-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); margin-top: 3.5rem; }
-    .step { background: var(--surface); padding: 2.5rem 2rem; position: relative; }
-    .step-num { font-family: var(--ff-head); font-size: 3.5rem; font-weight: 700; color: var(--bg); line-height: 1; margin-bottom: 1.5rem; -webkit-text-stroke: 1.5px var(--border); }
-    .step h3 { margin-bottom: 0.75rem; font-size: 1rem; }
-    .step p { font-size: 0.82rem; color: var(--text-muted); line-height: 1.72; }
-    .step-connector { position: absolute; top: 2.5rem; right: -1rem; width: 2rem; height: 1px; background: var(--border-em); z-index: 1; }
+  .hero-meta { display: flex; gap: 40px; flex-wrap: wrap; border-top: 1px solid var(--line); padding-top: 26px; }
+  .hero-meta-item .mv { font-family: var(--serif); font-size: 20px; font-weight: 600; color: var(--ink); }
+  .hero-meta-item .ml { font-size: 12px; color: var(--ink-faint); margin-top: 3px; letter-spacing: 0.01em; }
 
-    /* ── WHY US ── */
-    .why { background: var(--bg); }
-    .why-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
-    .why-left h2 { margin-bottom: 1rem; }
-    .why-left p { font-size: 0.9rem; line-height: 1.8; margin-bottom: 1.5rem; }
-    .why-points { display: flex; flex-direction: column; gap: 1px; background: var(--border); }
-    .why-point { background: var(--surface); padding: 1.25rem 1.5rem; display: flex; gap: 1.25rem; align-items: flex-start; transition: background 0.15s; }
-    .why-point:hover { background: #f8f9fa; }
-    .why-line { width: 2px; height: 1.5rem; background: var(--steel); flex-shrink: 0; margin-top: 0.18rem; }
-    .why-point-text strong { font-family: var(--ff-head); font-size: 0.85rem; font-weight: 600; color: var(--navy); display: block; margin-bottom: 0.25rem; }
-    .why-point-text span { font-size: 0.78rem; color: var(--text-muted); line-height: 1.6; }
+  /* ---------- Section shared ---------- */
+  section { padding: 110px 0; }
+  section.bordered { border-top: 1px solid var(--line); }
+  section.tight { padding: 80px 0; }
 
-    /* ── SUPPLIER CTA ── */
-    .supplier { background: var(--dark-bg); padding: 5.5rem 0; }
-    .supplier-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
-    .supplier h2 { color: #fff; margin-bottom: 1rem; }
-    .supplier p { color: rgba(255,255,255,0.55); font-size: 0.9rem; line-height: 1.8; margin-bottom: 0.85rem; }
-    .supplier-list { display: flex; flex-direction: column; gap: 0; border-top: 1px solid var(--dark-border); margin-top: 1.75rem; }
-    .supplier-item { padding: 0.9rem 0; border-bottom: 1px solid var(--dark-border); display: flex; align-items: center; gap: 0.85rem; font-size: 0.82rem; color: rgba(255,255,255,0.6); }
-    .supplier-item::before { content: ''; width: 5px; height: 5px; background: var(--steel-mid); border-radius: 50%; flex-shrink: 0; }
-    .supplier-right { background: var(--dark-surface); border: 1px solid var(--dark-border); padding: 2.25rem; }
-    .supplier-right .label { color: rgba(255,255,255,0.45); }
-    .s-form-field { margin-bottom: 1.1rem; }
-    .s-label { font-size: 0.72rem; font-family: var(--ff-head); font-weight: 500; color: rgba(255,255,255,0.5); letter-spacing: 0.1em; text-transform: uppercase; display: block; margin-bottom: 0.4rem; }
-    .s-input { width: 100%; background: rgba(255,255,255,0.05); border: 1px solid var(--dark-border); color: #fff; padding: 0.65rem 0.85rem; font-family: var(--ff-body); font-size: 0.84rem; outline: none; transition: border-color 0.15s; }
-    .s-input:focus { border-color: var(--steel-mid); }
-    .s-input::placeholder { color: rgba(255,255,255,0.25); }
-    .s-select { width: 100%; background: rgba(255,255,255,0.05); border: 1px solid var(--dark-border); color: rgba(255,255,255,0.8); padding: 0.65rem 0.85rem; font-family: var(--ff-body); font-size: 0.84rem; outline: none; appearance: none; cursor: pointer; }
-    .s-select option { background: #1a2c3d; color: #fff; }
+  .section-head { max-width: 760px; margin-bottom: 56px; }
+  .section-head h2 {
+    font-family: var(--serif); font-size: clamp(30px, 4vw, 46px); font-weight: 600;
+    line-height: 1.18; margin: 18px 0 0; letter-spacing: -0.01em;
+  }
 
-    /* ── FOOTER ── */
-    footer { background: var(--navy); padding: 3.5rem 0 2rem; }
-    .footer-top { display: grid; grid-template-columns: 240px 1fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; padding-bottom: 3rem; border-bottom: 1px solid var(--dark-border); }
-    .footer-brand { font-family: var(--ff-head); font-weight: 700; font-size: 0.95rem; letter-spacing: 0.04em; color: #fff; display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.85rem; }
-    .footer-mark { width: 14px; height: 14px; background: var(--steel-mid); clip-path: polygon(0 0, 100% 0, 100% 70%, 70% 100%, 0 100%); flex-shrink: 0; }
-    .footer-tagline { font-size: 0.8rem; color: rgba(255,255,255,0.4); line-height: 1.65; }
-    .footer-col-head { font-family: var(--ff-head); font-size: 0.65rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.35); margin-bottom: 1.1rem; }
-    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.55rem; }
-    .footer-links a { font-size: 0.82rem; color: rgba(255,255,255,0.55); text-decoration: none; transition: color 0.15s; }
-    .footer-links a:hover { color: #fff; }
-    .footer-bottom { display: flex; justify-content: space-between; align-items: center; }
-    .footer-copy { font-size: 0.74rem; color: rgba(255,255,255,0.3); }
-    .footer-legal { display: flex; gap: 2rem; }
-    .footer-legal a { font-size: 0.74rem; color: rgba(255,255,255,0.3); text-decoration: none; }
-    .footer-legal a:hover { color: rgba(255,255,255,0.6); }
+  /* ---------- Approach statement ---------- */
+  .approach-stmt {
+    font-family: var(--serif); font-weight: 500;
+    font-size: clamp(22px, 2.6vw, 32px); line-height: 1.45;
+    color: var(--ink); max-width: 980px;
+  }
+  .approach-stmt .gold { color: var(--gold); }
+  .approach-stmt + .approach-stmt { margin-top: 28px; }
 
-    /* ── REVEAL ── */
-    .rev { opacity: 0; transform: translateY(18px); transition: opacity 0.6s ease, transform 0.6s ease; }
-    .rev.on { opacity: 1; transform: none; }
-    .rev.d1 { transition-delay: 0.1s; }
-    .rev.d2 { transition-delay: 0.2s; }
-    .rev.d3 { transition-delay: 0.3s; }
+  /* ---------- Platform grid (numbered stages, no photos) ---------- */
+  .platform-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); }
+  @media (max-width: 920px) { .platform-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 560px) { .platform-grid { grid-template-columns: 1fr; } }
 
-    /* ── MOBILE ── */
-    @media (max-width: 900px) {
-      .container { padding: 0 1.5rem; }
-      nav .container { padding: 0 1.5rem; }
-      .nav-links { display: none; }
-      .hero-inner { grid-template-columns: 1fr; }
-      .hero-panel { display: none; }
-      .trust-inner { flex-wrap: wrap; }
-      .trust-item { flex: 0 0 50%; }
-      .caps-grid { grid-template-columns: 1fr 1fr; }
-      .cats-layout { grid-template-columns: 1fr; gap: 2.5rem; }
-      .cats-left { position: static; }
-      .serve-row { grid-template-columns: 1fr; gap: 1.5rem; }
-      .serve-grid { grid-template-columns: 1fr 1fr; }
-      .steps-grid { grid-template-columns: 1fr; }
-      .why-layout { grid-template-columns: 1fr; gap: 2.5rem; }
-      .supplier-inner { grid-template-columns: 1fr; gap: 2.5rem; }
-      .footer-top { grid-template-columns: 1fr 1fr; gap: 2rem; }
-      section { padding: 3.5rem 0; }
-    }
-  </style>
+  .platform-cell { background: var(--bg); padding: 32px 26px; display: flex; flex-direction: column; min-height: 220px; }
+  .platform-cell .pnum-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 28px; }
+  .platform-cell .pnum { font-family: var(--serif); font-size: 30px; font-weight: 600; color: var(--gold-deep); line-height: 1; }
+  .platform-cell .pdot { width: 8px; height: 8px; border-radius: 50%; border: 1px solid var(--gold-deep); }
+  .platform-cell h4 { font-family: var(--serif); font-size: 19px; font-weight: 600; margin-bottom: 10px; }
+  .platform-cell p { font-size: 13px; color: var(--ink-soft); line-height: 1.6; flex: 1; }
+  .platform-cell .stage-tag {
+    display: inline-block; margin-top: 16px; font-family: var(--sans); font-weight: 600; font-size: 10.5px;
+    letter-spacing: 0.06em; text-transform: uppercase; color: var(--gold); background: var(--gold-tint); padding: 3px 9px; align-self: flex-start;
+  }
+
+  /* ---------- Why-this-matters cards ---------- */
+  .matter-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); }
+  @media (max-width: 800px) { .matter-grid { grid-template-columns: 1fr; } }
+
+  .matter-card { background: var(--bg); padding: 40px 36px; }
+  .matter-card .m-mark { font-family: var(--serif); font-size: 15px; color: var(--gold); margin-bottom: 20px; }
+  .matter-card h3 { font-family: var(--serif); font-size: 23px; font-weight: 600; margin-bottom: 14px; line-height: 1.3; }
+  .matter-card p { font-size: 14.5px; color: var(--ink-soft); }
+
+  /* ---------- Urgency block ---------- */
+  .urgency {
+    position: relative; padding: 96px 0; text-align: center;
+    border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+  }
+  .urgency-eyebrow { justify-content: center; margin-bottom: 22px; }
+  .urgency h2 {
+    font-family: var(--serif); font-size: clamp(26px, 3.4vw, 38px); font-weight: 600;
+    max-width: 760px; margin: 0 auto 18px; line-height: 1.3;
+  }
+  .urgency h2 .gold { color: var(--gold); }
+  .urgency p { font-size: 15.5px; color: var(--ink-soft); max-width: 600px; margin: 0 auto; }
+
+  /* ---------- Process ---------- */
+  .process-list { display: flex; flex-direction: column; }
+  .process-row { display: grid; grid-template-columns: 80px 1fr; gap: 32px; padding: 34px 0; border-top: 1px solid var(--line); }
+  .process-row:first-child { border-top: none; }
+  .process-row .step-mark { font-family: var(--serif); font-size: 22px; font-weight: 600; color: var(--gold); padding-top: 1px; }
+  .process-row h4 { font-family: var(--serif); font-size: 19px; font-weight: 600; margin-bottom: 8px; }
+  .process-row p { color: var(--ink-soft); font-size: 14.5px; max-width: 600px; }
+
+  /* ---------- CTA band ---------- */
+  .cta-band { position: relative; padding: 110px 0; text-align: center; overflow: hidden; }
+  .cta-band-inner { position: relative; z-index: 3; }
+  .cta-band .eyebrow { justify-content: center; margin-bottom: 22px; }
+  .cta-band h2 { font-family: var(--serif); font-size: clamp(30px, 4vw, 46px); font-weight: 600; margin-bottom: 18px; max-width: 700px; margin-left: auto; margin-right: auto; }
+  .cta-band p { font-size: 16px; color: var(--ink-soft); max-width: 480px; margin: 0 auto 36px; }
+  .cta-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-bottom: 28px; }
+  .cta-direct { font-family: var(--sans); font-size: 13.5px; color: var(--ink-faint); }
+  .cta-direct a { color: var(--gold); border-bottom: 1px solid var(--gold-deep); }
+
+  footer { padding: 56px 0 40px; border-top: 1px solid var(--line); }
+  .footer-top { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 32px; margin-bottom: 40px; }
+  .footer-links-col { display: flex; flex-direction: column; gap: 12px; }
+  .footer-links-col a { font-size: 13.5px; color: var(--ink-soft); }
+  .footer-links-col a:hover { color: var(--gold); }
+  .footer-label { font-family: var(--sans); font-weight: 600; font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 14px; }
+  .footer-bottom { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; padding-top: 28px; border-top: 1px solid var(--line); }
+  .footer-meta { font-family: var(--sans); font-size: 12px; color: var(--ink-faint); }
+</style>
 </head>
 <body>
 
-<!-- NAV -->
-<nav>
-  <div class="container">
-    <div class="nav-inner">
-      <div class="nav-left">
-        <a href="#" class="nav-logo">
-          <div class="nav-mark"></div>
-          DE MINIMIS
-        </a>
-        <ul class="nav-links">
-        <li><a href="#capabilities">Capabilities</a></li>
-        <li><a href="#categories">Categories</a></li>
-        <li><a href="#industries">Industries</a></li>
-        <li><a href="#how">How We Work</a></li>
-        <li><a href="#suppliers">Suppliers</a></li>
-        <li><a href="#contact">About</a></li>
-      </ul>
-      </div>
-      <div class="nav-cta">
-        <div class="nav-divider"></div>
-        <a href="#contact" class="btn btn-primary btn-sm">Request a Quote</a>
-      </div>
-    </div>
+<header>
+  <div class="wrap header-inner">
+    <a class="logo" href="#top">De Minimis</a>
+    <nav>
+      <a href="#approach">Approach</a>
+      <a href="#platform">The Chain</a>
+      <a href="#matters">Why It Matters</a>
+      <a href="#process">Process</a>
+    </nav>
+    <a class="btn btn-solid" href="#contact">Get in Touch</a>
   </div>
-</nav>
+</header>
 
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-grid-bg"></div>
-  <div class="container">
-    <div class="hero-inner">
-      <div>
-        <div class="hero-eyebrow">
-          <div class="hero-tag">U.S.-Based · Taiwan &amp; Asia Sourcing</div>
-        </div>
-        <h1>Industrial &amp; Robotics<br>Component Sourcing,<br><span class="accent">Built for Speed.</span></h1>
-        <p class="hero-body">We help U.S. robotics companies, integrators, and machine builders source hard-to-find components from Taiwanese and Asian manufacturers — faster turnaround, clearer communication, and less friction than going direct.</p>
-        <div class="hero-actions">
-          <a href="#contact" class="btn btn-primary">Request a Quote</a>
-          <a href="#how" class="btn btn-outline">How We Work</a>
-        </div>
-      </div>
-      <div class="hero-panel rev d1">
-        <div class="panel-head">Active Sourcing Categories</div>
-        <div class="panel-spec">
-          <div class="spec-row"><span class="spec-label">Servo motors &amp; gearboxes</span><span class="spec-val">In scope</span></div>
-          <div class="spec-divider"></div>
-          <div class="spec-row"><span class="spec-label">Controllers &amp; servo drives</span><span class="spec-val">In scope</span></div>
-          <div class="spec-divider"></div>
-          <div class="spec-row"><span class="spec-label">Sensors &amp; encoders</span><span class="spec-val">In scope</span></div>
-          <div class="spec-divider"></div>
-          <div class="spec-row"><span class="spec-label">Vision &amp; camera modules</span><span class="spec-val">In scope</span></div>
-          <div class="spec-divider"></div>
-          <div class="spec-row"><span class="spec-label">Legacy / hard-to-find parts</span><span class="spec-val">Specialty</span></div>
-        </div>
-        <div class="panel-rfq">
-          <span class="rfq-label">Quick quote — part number or description</span>
-          <div class="rfq-input">
-            <input class="rfq-in" type="text" placeholder="e.g. 23-bit encoder, 750W servo…">
-            <button class="rfq-btn">Submit →</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+<main id="top">
 
-<!-- TRUST BAR -->
-<div class="trust-bar">
-  <div class="container" style="padding:0">
-    <div class="trust-inner">
-      <div class="trust-item"><div class="trust-dot"></div><div class="trust-text"><strong>U.S.-Based Coordination</strong><span>U.S.-based, coast-to-coast coverage</span></div></div>
-      <div class="trust-item"><div class="trust-dot"></div><div class="trust-text"><strong>Taiwan &amp; Asia Focus</strong><span>Direct supplier relationships, fewer intermediaries</span></div></div>
-      <div class="trust-item"><div class="trust-dot"></div><div class="trust-text"><strong>Fast RFQ Response</strong><span>Initial response within one business day</span></div></div>
-      <div class="trust-item"><div class="trust-dot"></div><div class="trust-text"><strong>Technical Quote Support</strong><span>We review specs, not just SKUs</span></div></div>
+  <!-- HERO -->
+  <section class="hero texture">
+    <div class="wrap hero-content">
+      <div class="hero-kicker">De Minimis</div>
+      <h1>The sourcing partner for North America's <em>industrial supply chain.</em></h1>
+      <p class="lede">We import the equipment behind critical mineral processing, rare earth separation, and the broader industrial base being rebuilt across North America.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-solid" href="#contact">Start a Sourcing Request</a>
+        <a class="arrow-link" href="#approach">Our Approach</a>
+      </div>
+      <div class="hero-meta">
+        <div class="hero-meta-item"><div class="mv">Industrial</div><div class="ml">Equipment, across sectors</div></div>
+        <div class="hero-meta-item"><div class="mv">Rare Earth</div><div class="ml">A primary area of focus</div></div>
+        <div class="hero-meta-item"><div class="mv">Full Import</div><div class="ml">Freight, customs, compliance</div></div>
+      </div>
     </div>
-  </div>
-</div>
+  </section>
 
-<!-- CAPABILITIES -->
-<section class="caps" id="capabilities">
-  <div class="container">
-    <div class="sec-head rev">
-      <span class="label">What We Do</span>
-      <div class="divider"></div>
-      <h2>Sourcing services that cover<br>the full procurement cycle</h2>
-    </div>
-    <div class="caps-grid rev d1">
-      <div class="cap-card">
-        <div class="cap-num">01</div>
-        <h3 class="cap-title">Component Sourcing</h3>
-        <p class="cap-body">We identify and qualify suppliers for specific components — from standard catalog parts to custom specs. We handle the outreach, vetting, and sample coordination so your team doesn't have to manage it directly.</p>
-      </div>
-      <div class="cap-card">
-        <div class="cap-num">02</div>
-        <h3 class="cap-title">Supplier Matching</h3>
-        <p class="cap-body">We maintain active relationships with component manufacturers across Taiwan and Asia — particularly those underrepresented in U.S. distribution. When you have a hard-to-source need, we have a shorter path.</p>
-      </div>
-      <div class="cap-card">
-        <div class="cap-num">03</div>
-        <h3 class="cap-title">Technical Quote Support</h3>
-        <p class="cap-body">We review your requirements against supplier specs, flag compatibility issues, and provide structured quote comparisons — not just price lists. Buyers get documentation that supports internal review.</p>
-      </div>
-      <div class="cap-card">
-        <div class="cap-num">04</div>
-        <h3 class="cap-title">Repeat Procurement</h3>
-        <p class="cap-body">For components that recur across builds or production runs, we support ongoing procurement — coordinating delivery schedules, maintaining supplier communication, and reducing repeat sourcing effort.</p>
+  <!-- APPROACH -->
+  <section class="bordered" id="approach">
+    <div class="wrap">
+      <div class="eyebrow"><span class="rule"></span>Our Approach</div>
+      <div style="margin-top: 26px;">
+        <p class="approach-stmt">De Minimis sources and imports industrial equipment for buyers across North America — <span class="gold">matched to spec, sourced from manufacturers we already know, and delivered with one point of contact throughout.</span></p>
+        <p class="approach-stmt">We work across industrial sectors. Right now, the sharpest demand — and where we spend most of our time — is the equipment behind critical mineral and rare earth processing.</p>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- PRODUCT CATEGORIES -->
-<section class="cats" id="categories">
-  <div class="container">
-    <div class="cats-layout">
-      <div class="cats-left rev">
-        <span class="label">Product Categories</span>
-        <div class="divider"></div>
-        <h2>Components we source and specify</h2>
-        <p>We source across motion, controls, sensing, and vision — with a focus on industrial and robotics applications. We work to specification, not just SKU — and help buyers navigate equivalent options when direct matches aren't available.</p>
-        <a href="#contact" class="btn btn-primary">Submit a Requirement</a>
-      </div>
-      <div class="cats-grid rev d1">
-        <div class="cat-cell">
-          <div class="cat-name">Motors &amp; Gearmotors</div>
-          <div class="cat-desc">Servo, stepper, and BLDC motors with and without integrated gearing. Sized for robotics and light industrial applications.</div>
-          <div class="cat-examples"><span class="cat-tag">AC Servo</span><span class="cat-tag">BLDC</span><span class="cat-tag">Stepper</span><span class="cat-tag">Hollow-shaft</span></div>
-        </div>
-        <div class="cat-cell">
-          <div class="cat-name">Gearboxes &amp; Reducers</div>
-          <div class="cat-desc">Planetary, cycloidal, and harmonic reducers for precision motion and torque amplification in automation systems.</div>
-          <div class="cat-examples"><span class="cat-tag">Planetary</span><span class="cat-tag">Cycloidal</span><span class="cat-tag">Harmonic</span><span class="cat-tag">Right-angle</span></div>
-        </div>
-        <div class="cat-cell">
-          <div class="cat-name">Controllers &amp; Drives</div>
-          <div class="cat-desc">Motion controllers, servo drives, and variable frequency drives. Single-axis to multi-axis coordination for machine and robot applications.</div>
-          <div class="cat-examples"><span class="cat-tag">Servo Drives</span><span class="cat-tag">VFD</span><span class="cat-tag">Motion Controllers</span></div>
-        </div>
-        <div class="cat-cell">
-          <div class="cat-name">Sensors &amp; Encoders</div>
-          <div class="cat-desc">Rotary and linear encoders, proximity sensors, pressure and force sensing, and industrial-grade IO devices.</div>
-          <div class="cat-examples"><span class="cat-tag">Rotary Encoder</span><span class="cat-tag">Linear Scale</span><span class="cat-tag">Proximity</span></div>
-        </div>
-        <div class="cat-cell">
-          <div class="cat-name">Vision &amp; Camera Modules</div>
-          <div class="cat-desc">Industrial vision cameras, smart cameras, and lens assemblies for inspection, guidance, and identification applications.</div>
-          <div class="cat-examples"><span class="cat-tag">Area Scan</span><span class="cat-tag">Line Scan</span><span class="cat-tag">3D Vision</span></div>
-        </div>
-        <div class="cat-cell" style="background:#fafbfc">
-          <div class="cat-name">Legacy &amp; Hard-to-Find</div>
-          <div class="cat-desc">Discontinued or obsolete components for maintenance, repair, and retrofit. We source through manufacturer contacts and verified secondary channels.</div>
-          <div class="cat-examples"><span class="cat-tag">EOL Parts</span><span class="cat-tag">Retrofit</span><span class="cat-tag">MRO</span></div>
-        </div>
+  <!-- PLATFORM / CHAIN -->
+  <section class="bordered" id="platform">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow"><span class="rule"></span>The Chain We Source For</div>
+        <h2>Critical minerals, mine to magnet</h2>
       </div>
     </div>
-  </div>
-</section>
 
-<!-- WHO WE SERVE -->
-<section class="serve" id="industries">
-  <div class="container">
-    <div class="serve-row rev">
-      <div>
-        <span class="label">Who We Serve</span>
-        <div class="divider"></div>
-        <h2>Built for buyers who need<br>components done right</h2>
-      </div>
-      <div>
-        <p>We work with engineering and procurement teams that don't have time to manage overseas supplier relationships directly — and who need a U.S.-based partner that understands the technical requirements behind a parts request.</p>
-      </div>
-    </div>
-    <div class="serve-grid rev d1">
-      <div class="serve-cell">
-        <h4>Robotics OEMs</h4>
-        <p>Companies building robotic systems who need reliable sourcing for motion and control components across product generations.</p>
-      </div>
-      <div class="serve-cell">
-        <h4>Systems Integrators</h4>
-        <p>Integrators building custom automation cells who source components across multiple vendors per project and need quick quote turnaround.</p>
-      </div>
-      <div class="serve-cell">
-        <h4>Machine Builders</h4>
-        <p>OEM machine manufacturers who spec components early in design and need sourcing confidence before BOM finalization.</p>
-      </div>
-      <div class="serve-cell">
-        <h4>Automation Teams</h4>
-        <p>In-house automation and engineering teams at manufacturers who maintain and expand their own production equipment.</p>
-      </div>
-      <div class="serve-cell">
-        <h4>Plant &amp; Maintenance</h4>
-        <p>Maintenance teams sourcing replacement and legacy parts for production-critical equipment where downtime is not acceptable.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- HOW IT WORKS -->
-<section class="how" id="how">
-  <div class="container">
-    <div class="sec-head rev" style="max-width:52ch">
-      <span class="label">How We Work</span>
-      <div class="divider"></div>
-      <h2>A clear process from requirement to delivery</h2>
-    </div>
-    <div class="steps-grid rev d1">
-      <div class="step">
-        <div class="step-num">01</div>
-        <h3>Submit Your Requirement</h3>
-        <p>Send us a part number, spec sheet, or description of what you need. Include quantity, timeline, and any technical constraints. No RFQ template required — we work with what you have.</p>
-      </div>
-      <div class="step">
-        <div class="step-num">02</div>
-        <h3>Supplier Outreach &amp; Matching</h3>
-        <p>We review your requirement against our supplier network and initiate outreach to qualified manufacturers. We evaluate fit on spec, lead time, and supplier reliability before presenting options.</p>
-      </div>
-      <div class="step">
-        <div class="step-num">03</div>
-        <h3>Structured Quote &amp; Comparison</h3>
-        <p>You receive a clear comparison of sourced options — pricing, lead time, certifications, and relevant spec notes. We flag concerns and recommend based on your application, not just price.</p>
-      </div>
-      <div class="step">
-        <div class="step-num">04</div>
-        <h3>Order &amp; Delivery Coordination</h3>
-        <p>Once you approve, we handle supplier coordination, export documentation, and logistics. We keep you informed at each stage — no chasing required on your end.</p>
-      </div>
-      <div class="step">
-        <div class="step-num">05</div>
-        <h3>Ongoing Support</h3>
-        <p>For repeat components or ongoing programs, we maintain supplier relationships and coordinate subsequent orders. We track lead times and flag supply chain changes proactively.</p>
-      </div>
-      <div class="step" style="background:#fafbfc">
-        <div class="step-num" style="color:transparent">–</div>
-        <div style="border:1px solid var(--border);padding:1.5rem;margin-bottom:1.25rem">
-          <p style="font-size:0.78rem;color:var(--text-muted);line-height:1.7;margin-bottom:1rem">Ready to start a sourcing request? Most buyers get a response within one business day.</p>
-          <a href="#contact" class="btn btn-primary btn-sm">Submit a Request</a>
+    <div class="wrap">
+      <div class="platform-grid">
+        <div class="platform-cell">
+          <div class="pnum-row"><div class="pnum">01</div><div class="pdot"></div></div>
+          <h4>Mine &amp; Concentrate</h4>
+          <p>Magnetic separators, flotation cells, and spiral classifiers for initial mineral concentration.</p>
         </div>
-        <p style="font-size:0.74rem;color:var(--text-muted)">Or email us at <a href="mailto:joshjackman@de-minimis.ai" style="color:var(--steel)">joshjackman@de-minimis.ai</a> with your requirement.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- WHY US -->
-<section class="why">
-  <div class="container">
-    <div class="why-layout">
-      <div class="why-left rev">
-        <span class="label">Why Buyers Use Us</span>
-        <div class="divider"></div>
-        <h2>Faster than going direct. More accountable than a trading firm.</h2>
-        <p>Most industrial buyers dealing with Asian component suppliers run into the same problems: slow responses, unclear specs, poor documentation, and no recourse when something goes wrong. We exist to eliminate those friction points.</p>
-        <p>We're not a catalog distributor. We're a sourcing partner — which means we're invested in getting you the right part, not just any part on a commission.</p>
-        <a href="#contact" class="btn btn-outline" style="margin-top:0.5rem">Talk to Us</a>
-      </div>
-      <div class="rev d1">
-        <div class="why-points">
-          <div class="why-point"><div class="why-line"></div><div class="why-point-text"><strong>Faster than direct overseas outreach</strong><span>We have established supplier relationships. You're not starting cold with a factory that handles English inquiries as a second priority.</span></div></div>
-          <div class="why-point"><div class="why-line"></div><div class="why-point-text"><strong>Clear documentation and communication</strong><span>We translate technical requirements, review datasheets for fit, and deliver structured quotes with supporting documentation — not forwarded factory PDFs.</span></div></div>
-          <div class="why-point"><div class="why-line"></div><div class="why-point-text"><strong>Access to underrepresented suppliers</strong><span>Some of the best Taiwanese and Asian component manufacturers aren't in any U.S. distribution catalog. We bring them to buyers who would otherwise never see them.</span></div></div>
-          <div class="why-point"><div class="why-line"></div><div class="why-point-text"><strong>U.S.-based accountability</strong><span>You have a local point of contact throughout the sourcing and delivery process. If something goes wrong, you're not emailing a factory at midnight.</span></div></div>
-          <div class="why-point"><div class="why-line"></div><div class="why-point-text"><strong>No dead ends on hard parts</strong><span>Legacy components, discontinued SKUs, and small-batch specialty items are where we spend extra effort — because that's where generic distributors stop trying.</span></div></div>
+        <div class="platform-cell">
+          <div class="pnum-row"><div class="pnum">02</div><div class="pdot"></div></div>
+          <h4>Separate &amp; Refine</h4>
+          <p>Mixer-settlers and leaching tanks for solvent extraction and rare earth separation.</p>
+        </div>
+        <div class="platform-cell">
+          <div class="pnum-row"><div class="pnum">03</div><div class="pdot"></div></div>
+          <h4>Metallize &amp; Alloy</h4>
+          <p>Furnaces, process control systems, and electrowinning cells for metal production.</p>
+          <span class="stage-tag">Sourcing now</span>
+        </div>
+        <div class="platform-cell">
+          <div class="pnum-row"><div class="pnum">04</div><div class="pdot"></div></div>
+          <h4>Magnet &amp; Component</h4>
+          <p>Sintering furnaces, magnetizers, and precision machining for finished components.</p>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- SUPPLIER CTA -->
-<section class="supplier" id="suppliers">
-  <div class="container">
-    <div class="supplier-inner">
-      <div class="rev">
-        <span class="label" style="color:rgba(255,255,255,0.4)">For Manufacturers</span>
-        <div class="divider" style="background:var(--steel-mid)"></div>
-        <h2>U.S. channel access for underrepresented component manufacturers</h2>
-        <p>If you manufacture motion components, sensors, controls, or industrial electronics — and you're not well-represented in the U.S. market — we can help.</p>
-        <p>We work with a small number of supplier partners to provide buyer access, lead generation, and commercial representation without the overhead of establishing a U.S. sales operation from scratch.</p>
-        <div class="supplier-list">
-          <div class="supplier-item">Motion components: servo motors, gearboxes, drives</div>
-          <div class="supplier-item">Sensors: encoders, proximity, vision modules</div>
-          <div class="supplier-item">Controls: motion controllers, industrial electronics</div>
-          <div class="supplier-item">Robotics subassemblies and specialty actuation</div>
-          <div class="supplier-item">Legacy and replacement component manufacturing</div>
-        </div>
-        <a href="#" class="btn btn-ghost-light" style="margin-top:2rem">Discuss Partnership</a>
+  <!-- WHY THIS MATTERS -->
+  <section class="bordered" id="matters">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow"><span class="rule"></span>Why This Matters</div>
+        <h2>A supply chain being rebuilt from the ground up</h2>
       </div>
-      <div class="rev d1">
-        <div class="supplier-right">
-          <span class="label">Supplier Partnership Inquiry</span>
-          <div class="s-form-field"><label class="s-label">Company Name</label><input class="s-input" type="text" placeholder="Your company name"></div>
-          <div class="s-form-field"><label class="s-label">Contact Name</label><input class="s-input" type="text" placeholder="Name and title"></div>
-          <div class="s-form-field"><label class="s-label">Work Email</label><input class="s-input" type="email" placeholder="email@company.com"></div>
-          <div class="s-form-field"><label class="s-label">Component Category</label>
-            <select class="s-select">
-              <option value="">Select category…</option>
-              <option>Motors &amp; Gearboxes</option>
-              <option>Controllers &amp; Drives</option>
-              <option>Sensors &amp; Encoders</option>
-              <option>Vision Systems</option>
-              <option>Actuators &amp; Motion</option>
-              <option>Other Industrial Components</option>
-            </select>
-          </div>
-          <div class="s-form-field"><label class="s-label">Brief Description</label><textarea class="s-input" rows="3" placeholder="What you manufacture and your current U.S. market situation…" style="resize:vertical"></textarea></div>
-          <button class="btn btn-steel" style="width:100%;justify-content:center;margin-top:0.25rem">Submit Inquiry</button>
+    </div>
+
+    <div class="wrap">
+      <div class="matter-grid">
+        <div class="matter-card">
+          <div class="m-mark">01</div>
+          <h3>No Existing Relationships to Draw On</h3>
+          <p>Most companies building new processing capacity are doing it for the first time. There's no established supplier list to call from, and no time to build one from scratch while a facility is under construction.</p>
+        </div>
+        <div class="matter-card">
+          <div class="m-mark">02</div>
+          <h3>One Contact, Not Three</h3>
+          <p>Importing equipment means coordinating a manufacturer, a freight forwarder, and a customs broker. We collapse that into a single relationship, accountable from quote to delivery.</p>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- FOOTER -->
+  <!-- URGENCY -->
+  <section class="urgency texture-card">
+    <div class="wrap">
+      <div class="eyebrow urgency-eyebrow"><span class="rule"></span>The Window Is Now</div>
+      <h2>Processing capacity is being built <span class="gold">faster than supply chains can form around it.</span></h2>
+      <p>The companies that secure reliable equipment sourcing early are the ones that stay on schedule. We exist to close that gap before it becomes a delay.</p>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section class="bordered" id="process">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow"><span class="rule"></span>How It Works</div>
+        <h2>From requirement to delivery</h2>
+      </div>
+
+      <div class="process-list">
+        <div class="process-row"><div class="step-mark">01</div><div><h4>Tell us what you need</h4><p>A spec sheet, an equipment category, or a description of the process you're building for. No formal RFQ required.</p></div></div>
+        <div class="process-row"><div class="step-mark">02</div><div><h4>We match against our supplier network</h4><p>We go directly to manufacturers we have existing relationships with and qualify fit on spec, certification, and lead time.</p></div></div>
+        <div class="process-row"><div class="step-mark">03</div><div><h4>You get a structured comparison</h4><p>Pricing, lead times, and certification notes — not a forwarded factory PDF.</p></div></div>
+        <div class="process-row"><div class="step-mark">04</div><div><h4>We handle the import</h4><p>Freight, customs documentation, and delivery coordination, managed directly so you have one point of contact from order to arrival.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-band bordered texture" id="contact">
+    <div class="wrap cta-band-inner">
+      <div class="eyebrow"><span class="rule"></span>Get In Touch</div>
+      <h2>Start a sourcing conversation</h2>
+      <p>Whether it's rare earth processing equipment or something more general, tell us what you need and we'll take it from there.</p>
+      <div class="cta-buttons">
+        <a class="btn btn-solid" href="mailto:joshjackman@de-minimis.ai?subject=Sourcing%20Request">Request Sourcing</a>
+        <a class="btn" href="mailto:joshjackman@de-minimis.ai?subject=Supplier%20Partnership">Supplier Partnership</a>
+      </div>
+      <div class="cta-direct">Or email directly — <a href="mailto:joshjackman@de-minimis.ai">joshjackman@de-minimis.ai</a></div>
+    </div>
+  </section>
+
+</main>
+
 <footer>
-  <div class="container">
+  <div class="wrap">
     <div class="footer-top">
       <div>
-        <div class="footer-brand"><div class="footer-mark"></div>DE MINIMIS</div>
-        <p class="footer-tagline">Industrial and robotics component sourcing, built around speed, precision, and accountability.</p>
-        <p class="footer-tagline" style="margin-top:0.65rem">U.S.-based coordination. Taiwan and Asia sourcing focus.</p>
+        <a class="logo" href="#top">De Minimis</a>
       </div>
-      <div>
-        <div class="footer-col-head">Services</div>
-        <ul class="footer-links">
-          <li><a href="#">Component Sourcing</a></li>
-          <li><a href="#">Supplier Matching</a></li>
-          <li><a href="#">Technical Quote Support</a></li>
-          <li><a href="#">Repeat Procurement</a></li>
-          <li><a href="#">Legacy Parts</a></li>
-        </ul>
+      <div class="footer-links-col">
+        <div class="footer-label">Company</div>
+        <a href="#approach">Approach</a>
+        <a href="#platform">The Chain</a>
+        <a href="#matters">Why It Matters</a>
       </div>
-      <div>
-        <div class="footer-col-head">Company</div>
-        <ul class="footer-links">
-          <li><a href="#">About</a></li>
-          <li><a href="#">How We Work</a></li>
-          <li><a href="#">Supplier Partnerships</a></li>
-          <li><a href="#">Industries</a></li>
-          <li><a href="#">Contact</a></li>
-        </ul>
-      </div>
-      <div>
-        <div class="footer-col-head">Contact</div>
-        <ul class="footer-links">
-          <li><a href="mailto:joshjackman@de-minimis.ai">joshjackman@de-minimis.ai</a></li>
-          <li><a href="tel:5155285999">(515) 528-5999</a></li>
-          <li><a href="#">Request a Quote</a></li>
-          <li><a href="#">Supplier Inquiry</a></li>
-          <li><a href="#" style="color:rgba(255,255,255,0.25);font-size:0.78rem;margin-top:0.5rem;display:block">U.S.-based</a></li>
-        </ul>
+      <div class="footer-links-col">
+        <div class="footer-label">Contact</div>
+        <a href="mailto:joshjackman@de-minimis.ai">joshjackman@de-minimis.ai</a>
+        <a href="tel:5155285999">(515) 528-5999</a>
       </div>
     </div>
     <div class="footer-bottom">
-      <div class="footer-copy">© 2025 De Minimis. All rights reserved.</div>
-      <div class="footer-legal">
-        <a href="#">Privacy</a>
-        <a href="#">Terms</a>
-      </div>
+      <div class="footer-meta">© 2026 De Minimis</div>
+      <div class="footer-meta">Industrial equipment sourcing &amp; importing</div>
     </div>
   </div>
 </footer>
 
-<script>
-  const obs = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('on'); });
-  }, { threshold: 0.07 });
-  document.querySelectorAll('.rev').forEach(el => obs.observe(el));
-</script>
 </body>
 </html>
